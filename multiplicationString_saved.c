@@ -2,7 +2,8 @@
 //still have memory leak problem
 //not free for some allocated memory
 
-
+//karatsuba 
+//can get the multiplication of two very "larger" numbers
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
