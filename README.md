@@ -2,15 +2,15 @@
 
 
 
-##4
+## 4
 
-###The Mincut Problem
+### The Mincut Problem
 
 In this [Minumum cut](https://en.wikipedia.org/wiki/Minimum_cut) problem, the undirected graph is given as a file with every element represents a vertice in the graph. In each line, all the element except the first one represent the vertices connected with the vertice of the first element.
 
 The task is to compute the minimum cut.
 
-###My Implementation
+### My Implementation
 
 Based on [Karger's algorithm](https://en.wikipedia.org/wiki/Karger%27s_algorithm), my implementation of the randomized contraction algorithm is
 
@@ -23,7 +23,7 @@ Based on [Karger's algorithm](https://en.wikipedia.org/wiki/Karger%27s_algorithm
 	* merge (or “contract” ) v2 into v1
 * return cut represented by final 2 vertices.
 
-###Run My Code
+### Run My Code
 
 run
 
