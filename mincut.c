@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define N 200
-int** read2dArray(FILE* p, int* nedges);
+int** read2dArray(FILE* p);
 int countCrossing(int** table, int nedges, int degree[]);
 void mergesort(int* array, int n);
 int partition(int* array, int leftid, int rightid);
@@ -60,9 +60,6 @@ int countCrossing(int** table, int nedges, int degree[]){
 	srand((unsigned) t);
 
     while(nvertices>2){
-//	printf("original:table. nedges=%d\n", nedges);
-//	printTable(table);
-
 	//randomly pick one edge
 	random=rand() % (2*nedges);
 //	printf("\n\nrandom=%d\n",random);
@@ -118,6 +115,7 @@ int countCrossing(int** table, int nedges, int degree[]){
 		}
 	}
 	//now k==random, delete 1 edge (2 vertices)
+
 	nedges--;
 	v2=table[i][j];
 	v1=table[i][0];
@@ -199,6 +197,7 @@ int countCrossing(int** table, int nedges, int degree[]){
 		mergesort(&table[i][1],degree[i]);
 	}
 	nedges-=temp/2;
+//	printf("nedges-=temp/2: %d\n",nedges);////////////////////////////////////
 //	printf("change v2 to v1,and deleted self-loop:\n");
 //	printTable(table);///////////////////////////////
 //	printf("delet %d edges, now nedges=%d\n",temp/2, nedges);
@@ -284,16 +283,23 @@ int countCrossing(int** table, int nedges, int degree[]){
 	int tempdegree=0,temptotal=0;
 	for(i=0;i<N;i++){
 		if(table[i][0]!=0){
-		for(j=1;j<(1+N*(N-1)/2);j++){
-			if(table[i][j]!=0){
-				tempdegree++;
+			for(j=1;j<(1+N*(N-1)/2);j++){
+				if(table[i][j]!=0){
+					tempdegree++;
+				}
 			}
-		}
-		temptotal+=tempdegree;
-		tempdegree=0;
+			temptotal+=tempdegree;
+			tempdegree=0;
 		}
 	}
+
+	if(nedges!=temptotal/2){
+		printf("error: nedges!=temptotal/2\n");
+//		exit(-1);
+	}
 	nedges=temptotal/2;
+
+
     }
 
 
@@ -311,7 +317,7 @@ int countCrossing(int** table, int nedges, int degree[]){
     return count;
 }
 
-int** read2dArray(FILE* p, int* nedges){//read value of vertices from file, set 0 if not exist(if deleted later, also set 0 later)
+int** read2dArray(FILE* p){//read value of vertices from file, set 0 if not exist(if deleted later, also set 0 later)
 //	int table[N][N];
 	int** table=malloc(sizeof(int*)*N);
 	int i=0,j=0;
@@ -332,7 +338,6 @@ int** read2dArray(FILE* p, int* nedges){//read value of vertices from file, set 
 		else {//=='\t' or '\n'
 			vid[vlen]='\0';
 			table[i][j]=atoi(vid);
-			(*nedges)++;
 			j++;
 			vlen=0;
 
@@ -346,9 +351,7 @@ int** read2dArray(FILE* p, int* nedges){//read value of vertices from file, set 
 			}
 		}
 		
-	}
-	(*nedges)=((*nedges)-N)/2;
-	
+	}	
 	return table;
 }
 
@@ -370,17 +373,18 @@ void printTable(int** table){
 
 int main(){
 	FILE* p=fopen("kargerMinCut.txt", "r");
-//	FILE* p=fopen("result3.txt", "r");////////////////////////////////////
+//	FILE* p=fopen("testcase1.txt", "r");////////////////////////////////////
 	if(p==NULL){
 		printf("No such file.\n");
 		return 1;
 	}
 
 	int nedges=0;
-	int** table=read2dArray(p, &nedges);
+	int** table=read2dArray(p);
 
 	int i,j;
 	int degree[N];
+
 	for(i=0;i<N;i++){
 		degree[i]=0;
 		for(j=0;j<(1+N*(N-1)/2);j++){
@@ -388,13 +392,17 @@ int main(){
 				degree[i]++;
 			}
 		}
+		nedges+=degree[i];
+//		printf("degree[%d]=%d\n",i,degree[i]);
 
 	}
+	nedges/=2;
 
 	//sort all rows(started from the second column)
 	for(i=0;i<N;i++){
 		mergesort(&table[i][1], degree[i]);
 	}
+
 	int count=countCrossing(table, nedges, degree);
 //	printf("count=%d\n", count);
 	printf("%d\n",count);
