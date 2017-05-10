@@ -14,7 +14,6 @@ char* stringProd(char*, char* );
 int main(){
 	char* x="3141592653589793238462643383279502884197169399375105820974944592";
 	char* y="2718281828459045235360287471352662497757247093699959574966967627";
-
 //	char* x="31";
 //	char* y="11";
 
@@ -39,20 +38,25 @@ char* karatsuba(char* x, char* y){
 	else{
 		int returnSize=nl+ns+1;
 
-		char* a=malloc(sizeof(char)*(nl-ns/2+1));
-		char* b=malloc(sizeof(char)*(ns/2)+1);
-		char* c=malloc(sizeof(char)*(ns-ns/2+1));
-		char* d=malloc(sizeof(char)*(ns/2+1));
-		char* ac=malloc(sizeof(char)*(nl+ns+2));//+1
-		char* bd=malloc(sizeof(char)*(ns/2+ns/2+2));
-		char* abcd=malloc(sizeof(char)*returnSize+1);
+		char* a=malloc(sizeof(char)*(nl-ns/2+1));//+1: '\0'
+		char* b=malloc(sizeof(char)*(ns/2)+1);//+1: '\0'
+		char* c=malloc(sizeof(char)*(ns-ns/2+1));//+1: '\0'
+		char* d=malloc(sizeof(char)*(ns/2+1));//+1: '\0'
+		char* ac=malloc(sizeof(char)*(nl+ns+2));//+1: can be (nl+ns+1) digits after multiplication; +1:'\0'
+		char* bd=malloc(sizeof(char)*(ns/2+ns/2+2));//+1: can be (nl+ns+1) digits after multiplication; +1:'\0'
+		char* abcd=malloc(sizeof(char)*returnSize+1);////////////////////?????????????????????????
 
-
+		//get a,c,b,d
 		int i;
 		for(i=0;i<=nl-ns/2-1;i++){
 			a[i]=l[i];
 		}		
 		a[i]='\0';
+
+		for(i=0;i<=ns-ns/2-1;i++){
+			c[i]=s[i];
+		}		
+		c[i]='\0';
 		
 		for(i=0;i<=ns/2-1;i++){
 			b[i]=l[nl-ns/2+i];
@@ -61,27 +65,25 @@ char* karatsuba(char* x, char* y){
 		b[i]='\0';
 		d[i]='\0';
 
-		for(i=0;i<=ns-ns/2-1;i++){
-			c[i]=s[i];
-		}		
-		c[i]='\0';
-
+		//get ac=a*c, bd=b*d
 		char* temp_ac=karatsuba(a,c);
 		char* temp_bd=karatsuba(b,d);
-
 		strcpy(ac,temp_ac);
 		strcpy(bd,temp_bd);
 		free(temp_ac);
 		free(temp_bd);
 
+		//get ab=a+b, cd=c+d, ab_cd=(a+b)*(c+d)
 		char* ab=stringSum(a,b);
 		char* cd=stringSum(c,d);
 		char* ab_cd=karatsuba(ab,cd);
 		free(ab);free(cd);
 
+		//get ab_cd_ac=ab_cd=(a+b)*(c+d)-ac
 		char* ab_cd_ac=stringSubtract(ab_cd,ac);
 		free(ab_cd);
 
+		//get abcd=ab_cd=(a+b)*(c+d)-ac-bd
 		char* temp_abcd=stringSubtract(ab_cd_ac,bd);
 		strcpy(abcd,temp_abcd);
 		free(ab_cd_ac);
@@ -99,6 +101,7 @@ char* karatsuba(char* x, char* y){
 		}	
 		abcd[labcd+i]='\0';
 
+		//get result=[10^(ns/2+ns/2)*a*c]+ [10^(ns/2)*(a+b)*(c+d)-ac-bd] + [b*d]
 		char* temp_ac_abcd=stringSum(ac,abcd);
 		char* result=stringSum(temp_ac_abcd,bd);
 		free(temp_ac_abcd);
@@ -212,3 +215,6 @@ char* stringProd(char* x, char* y){//suppose y only has 1 digit
 		return newresult;
 	}
 }
+
+
+
