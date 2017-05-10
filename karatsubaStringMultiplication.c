@@ -212,6 +212,3 @@ char* stringProd(char* x, char* y){//suppose y only has 1 digit
 		return newresult;
 	}
 }
-
-
-
