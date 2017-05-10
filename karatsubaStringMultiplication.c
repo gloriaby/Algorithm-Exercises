@@ -44,7 +44,7 @@ char* karatsuba(char* x, char* y){
 		char* d=malloc(sizeof(char)*(ns/2+1));//+1: '\0'
 		char* ac=malloc(sizeof(char)*(nl+ns+2));//+1: can be (nl+ns+1) digits after multiplication; +1:'\0'
 		char* bd=malloc(sizeof(char)*(ns/2+ns/2+2));//+1: can be (nl+ns+1) digits after multiplication; +1:'\0'
-		char* abcd=malloc(sizeof(char)*returnSize+1);////////////////////?????????????????????????
+		char* abcd=malloc(sizeof(char)*returnSize+1);//allocate a little bit more
 
 		//get a,c,b,d
 		int i;
