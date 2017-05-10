@@ -38,7 +38,9 @@ The multiplication can be calculated as
 ## The Mincut Problem
 
 mincut.c
+
 runMincut.sh
+
 kargerMinCut.txt
 
 In this [Minumum cut](https://en.wikipedia.org/wiki/Minimum_cut) problem, the undirected graph is given as a file with every element represents a vertice in the graph. In each line, all the element except the first one represent the vertices connected with the vertice of the first element.
