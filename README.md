@@ -3,6 +3,7 @@
 karatsubaStringMultiplication.c
 
 The [Karatsuba Algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm) can get the multiplication of two numbers faster than classic multiplication method.
+
 ###My Implementation
 Instead of receiving two integers, the input numbers are represented as strings so that we can get the multiplication of two very large numbers. Therefore, the method of adding and subtracting should also be modified in order to be applied on the strings. In my implication, the substracting method is not a general method, which means that the calling function of `stringSubtract()` have to make sure that the first number should be greater than the second number if they have the same digits. The basic multiplication method (the classical method) is used in function `stringProd()` but I just used the classical method to get the mutliplication of two 1-digit numbers.
 
