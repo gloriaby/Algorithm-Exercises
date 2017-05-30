@@ -1,7 +1,5 @@
 
 ## Karatsuba Multiplication
-karatsubaStringMultiplication.c
-
 The [Karatsuba Algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm) can get the multiplication of two numbers faster than classic multiplication method.
 
 ### My Implementation
@@ -30,19 +28,26 @@ The multiplication can be calculated as
 
 
 ## Count inversions
-(add later)
+
+inversion.c
+
+Array.txt
+
+Count the number of inversions in the file Array.txt, where the ith of the row indicates the ithe entry of the array.
+
+### My Implementation (based on slides of the course Divide and Conquer, Sorting and Searching, and Randomized Algorithms in Coursera )
+
+Divide the entire array into two parts and count the inversions of the left and right parts.
+
+Also count the inversions of the subarray whose first entry lies in the left part of the original array and last entry lies in the right part of the original array.
+
+The total number of inversions of the original array equals the sum of the three results acquired in the method described above.
 
 
 ## Get number of comparisions in QuickSort Algorithm
 (add later)
 
 ## The Mincut Problem
-
-mincut.c
-
-runMincut.sh
-
-kargerMinCut.txt
 
 In this [Minumum cut](https://en.wikipedia.org/wiki/Minimum_cut) problem, the undirected graph is given as a file with every element represents a vertice in the graph. In each line, all the element except the first one represent the vertices connected with the vertice of the first element.
 
