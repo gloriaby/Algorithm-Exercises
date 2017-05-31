@@ -1,5 +1,5 @@
 
-## week 1. Karatsuba Multiplication
+## Week 1. Karatsuba Multiplication
 
 Related files: karatsubaStringMultiplication.c
 
