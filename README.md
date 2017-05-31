@@ -1,5 +1,8 @@
 
 ## Karatsuba Multiplication
+
+Related files: karatsubaStringMultiplication.c
+
 The [Karatsuba Algorithm](https://en.wikipedia.org/wiki/Karatsuba_algorithm) can get the multiplication of two numbers faster than classic multiplication method.
 
 ### My Implementation
@@ -29,25 +32,44 @@ The multiplication can be calculated as
 
 ## Count inversions
 
-inversion.c
-
-Array.txt
+Related files: inversion.c, Array.txt
 
 Count the number of inversions in the file Array.txt, where the ith of the row indicates the ithe entry of the array.
 
 ### My Implementation (based on slides of the course Divide and Conquer, Sorting and Searching, and Randomized Algorithms in Coursera )
 
-Divide the entire array into two parts and count the inversions of the left and right parts.
+* Divide the entire array into two parts and count the inversions of the left and right parts.
 
-Also count the inversions of the subarray whose first entry lies in the left part of the original array and last entry lies in the right part of the original array.
+* Also count the inversions of the subarray whose first entry lies in the left part of the original array and last entry lies in the right part of the original array.
 
-The total number of inversions of the original array equals the sum of the three results acquired in the method described above.
+* The total number of inversions of the original array equals the sum of the three results acquired in the method described above.
 
 
 ## Get number of comparisions in QuickSort Algorithm
-(add later)
+
+Related files: QuickSort.c, QuickSort.txt
+
+Week 3 Assignment for course Divide and Conquer, Sorting and Searching, and Randomized Algorithms in Coursera: "Compute the total number of comparisons used to sort the given input file by QuickSort. When there is a recursive call on a subarray of length m, simply add m−1 to the running total of comparisons. (This is because the pivot element is compared to each of the other m−1 elements in the subarray in this recursive call.) "
+
+### My Implecation
+
+Based on slides for that course:
+
+* The Partition subroutine.
+	* Choose the pivot (in 3 different methods: left most, the median, right most) and swap it with the first entry of the array.
+	* Put the pivot into the right place.
+
+* Compute the total number of conparisions
+	* if n==1, return	 
+	* Partition the original array around the pivot
+	* Recursively sort the left part
+	* Recursively sort the right part 
+
+
 
 ## The Mincut Problem
+
+Related files: mincut.c, ./runMincut.sh, kargerMinCut.txt
 
 In this [Minumum cut](https://en.wikipedia.org/wiki/Minimum_cut) problem, the undirected graph is given as a file with every element represents a vertice in the graph. In each line, all the element except the first one represent the vertices connected with the vertice of the first element.
 
