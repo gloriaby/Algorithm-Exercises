@@ -1,5 +1,5 @@
 
-## Karatsuba Multiplication
+## week 1. Karatsuba Multiplication
 
 Related files: karatsubaStringMultiplication.c
 
@@ -30,7 +30,7 @@ The multiplication can be calculated as
 
 
 
-## Count inversions
+## Week2. Count inversions
 
 Related files: inversion.c, Array.txt
 
@@ -45,7 +45,7 @@ Count the number of inversions in the file Array.txt, where the ith of the row i
 * The total number of inversions of the original array equals the sum of the three results acquired in the method described above.
 
 
-## Get number of comparisions in QuickSort Algorithm
+## Week 3. Get number of comparisions in QuickSort Algorithm
 
 Related files: QuickSort.c, QuickSort.txt
 
@@ -67,7 +67,7 @@ Based on slides for that course:
 
 
 
-## The Mincut Problem
+## Week 4. The Mincut Problem
 
 Related files: mincut.c, runMincut.sh, kargerMinCut.txt
 
