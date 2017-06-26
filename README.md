@@ -51,7 +51,7 @@ Related files: QuickSort.c, QuickSort.txt
 
 Week 3 Assignment for course Divide and Conquer, Sorting and Searching, and Randomized Algorithms in Coursera: "Compute the total number of comparisons used to sort the given input file by QuickSort. When there is a recursive call on a subarray of length m, simply add m−1 to the running total of comparisons. (This is because the pivot element is compared to each of the other m−1 elements in the subarray in this recursive call.) "
 
-### My Implecation
+### My Implementation
 
 Based on slides for that course:
 
